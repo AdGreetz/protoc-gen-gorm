@@ -35,7 +35,7 @@ func CleanImports(pFileText *string) *string {
 /* --------- Plugin level import handling --------- */
 
 var (
-	gormImport         = "github.com/jinzhu/gorm"
+	gormImport         = "gorm.io/gorm"
 	tkgormImport       = "github.com/infobloxopen/atlas-app-toolkit/gorm"
 	uuidImport         = "github.com/satori/go.uuid"
 	authImport         = "github.com/infobloxopen/atlas-app-toolkit/auth"

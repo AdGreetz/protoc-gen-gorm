@@ -27,7 +27,7 @@ func (p *OrmPlugin) generateDefaultHandlers(file *generator.FileDescriptor) {
 			}
 
 			p.generateApplyFieldMask(message)
-			p.generateListHandler(message)
+			// p.generateListHandler(message)
 		}
 	}
 }
@@ -123,17 +123,17 @@ func (p *OrmPlugin) generateReadHandler(message *generator.Descriptor) {
 	p.P(`return nil, `, p.Import(gerrorsImport), `.EmptyIdError`)
 	p.P(`}`)
 
-	var fs string
-	if p.readHasFieldSelection(ormable) {
-		fs = "fs"
-	} else {
-		fs = "nil"
-	}
+	// var fs string
+	// if p.readHasFieldSelection(ormable) {
+	// 	fs = "fs"
+	// } else {
+	// 	fs = "nil"
+	// }
 
 	p.generateBeforeReadHookCall(ormable, "ApplyQuery")
-	p.P(`if db, err = `, p.Import(tkgormImport), `.ApplyFieldSelection(ctx, db, `, fs, `, &`, ormable.Name, `{}); err != nil {`)
-	p.P(`return nil, err`)
-	p.P(`}`)
+	// p.P(`if db, err = `, p.Import(tkgormImport), `.ApplyFieldSelection(ctx, db, `, fs, `, &`, ormable.Name, `{}); err != nil {`)
+	// p.P(`return nil, err`)
+	// p.P(`}`)
 
 	p.generateBeforeReadHookCall(ormable, "Find")
 	p.P(`ormResponse := `, ormable.Name, `{}`)
@@ -277,9 +277,9 @@ func (p *OrmPlugin) generateApplyFieldMask(message *generator.Descriptor) {
 			p.P(`childMask.Paths = append(childMask.Paths, trimPath)`)
 			p.P(`}`)
 			p.P(`}`)
-			p.P(`if err := `, p.Import(tkgormImport), `.MergeWithMask(patcher.`, ccName, `, patchee.`, ccName, `, childMask); err != nil {`)
-			p.P(`return nil, nil`)
-			p.P(`}`)
+			// p.P(`if err := `, p.Import(tkgormImport), `.MergeWithMask(patcher.`, ccName, `, patchee.`, ccName, `, childMask); err != nil {`)
+			// p.P(`return nil, nil`)
+			// p.P(`}`)
 			p.P(`}`)
 			p.P(`if f == prefix+"`, ccName, `" {`)
 			p.P(`updated`, ccName, ` = true`)
